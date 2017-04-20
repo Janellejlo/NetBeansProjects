@@ -38,13 +38,11 @@ public class OddEvenFileManager {
 
         @SuppressWarnings("UnusedAssignment")
         String sourceLine = null;
-    //testing
+
     //For checking even and odd
-        System.out.println("Checkpoint 1");
-        int i = 0;
         while ((sourceLine = inputStream.readLine()) != null) {
             int lineNumber = Integer.parseInt(sourceLine.split(" ")[0]);
-            System.out.println("Line " + i + " read");
+            
             if (lineNumber % 2 == 0) {
                 evenWriter.write(sourceLine);
                 evenWriter.newLine();
@@ -53,8 +51,6 @@ public class OddEvenFileManager {
                 oddWriter.write(sourceLine);
                 oddWriter.newLine();
             }
-            System.out.println("Line " + i + " written");
-            i++;
         }
         System.out.println("Numbers successfully written to file");
         inputStream.close();
@@ -65,7 +61,6 @@ public class OddEvenFileManager {
     public static void main(String[] args) throws IOException, NumberFormatException {
         doOddEvenSplitting();
     }
-    //test
 }    
 
 /**
