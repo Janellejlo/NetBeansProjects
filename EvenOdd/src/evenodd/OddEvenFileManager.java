@@ -15,9 +15,9 @@ import java.io.IOException;
 
 public class OddEvenFileManager {
 
-    public static final String DATA_PATH = "src\\evenodd\\Data.txt";
-    public static final String ODD_PATH =  "src\\evenodd\\OddResults.txt";
-    public static final String EVEN_PATH = "src\\evenodd\\EvenResults.txt";
+    public static final String DATA_PATH = "src/evenodd/Data.txt";
+    public static final String ODD_PATH =  "src/evenodd/OddResults.txt";
+    public static final String EVEN_PATH = "src/evenodd/EvenResults.txt";
 
 
     @SuppressWarnings("ConvertToTryWithResources")
@@ -40,9 +40,11 @@ public class OddEvenFileManager {
         String sourceLine = null;
     //testing
     //For checking even and odd
+        System.out.println("Checkpoint 1");
+        int i = 0;
         while ((sourceLine = inputStream.readLine()) != null) {
             int lineNumber = Integer.parseInt(sourceLine.split(" ")[0]);
- 
+            System.out.println("Line " + i + " read");
             if (lineNumber % 2 == 0) {
                 evenWriter.write(sourceLine);
                 evenWriter.newLine();
@@ -51,6 +53,8 @@ public class OddEvenFileManager {
                 oddWriter.write(sourceLine);
                 oddWriter.newLine();
             }
+            System.out.println("Line " + i + " written");
+            i++;
         }
         System.out.println("Numbers successfully written to file");
         inputStream.close();
@@ -63,3 +67,9 @@ public class OddEvenFileManager {
     }
     //test
 }    
+
+/**
+ *  for file paths
+ *  / for mac
+ *  \\ for windows
+ */
