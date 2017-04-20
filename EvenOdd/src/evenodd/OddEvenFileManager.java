@@ -38,7 +38,7 @@ public class OddEvenFileManager {
 
         @SuppressWarnings("UnusedAssignment")
         String sourceLine = null;
-    //test
+    //testing
     //For checking even and odd
         while ((sourceLine = inputStream.readLine()) != null) {
             int lineNumber = Integer.parseInt(sourceLine.split(" ")[0]);
