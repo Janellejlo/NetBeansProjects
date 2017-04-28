@@ -24,16 +24,24 @@ public class WordGame {
             Difficulties = keyboard.next().charAt(0);
             
             switch (Difficulties) {
+                case 'e':
                 case 'E':
+                    System.out.println("You selected easy");
                     newGame = new Easy();
                     break;
+                case 'a':
                 case 'A':
+                    System.out.println("You selected average");
                     newGame = new Average();
                     break;
+                case 'h':
                 case 'H':
+                    System.out.println("You selected hard");
                     newGame = new Hard();
                     break;
                 default:
+                    System.out.println("Wrong input, aborting"); //change to get input again
+                    System.exit(0);
                     break;
             }
             newGame.play();              

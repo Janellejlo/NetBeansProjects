@@ -11,8 +11,8 @@ public abstract class Game {
     protected static final int MAX_TRIES = 3;
     protected static String[][] Wordlist;
     protected static String Word;
-    protected static String WordD;
-    protected static char Letter;
+    protected static String WordD; //definition
+    protected static char Letter; //probably not needed
     protected static int num_of_wrong_guesses;
     protected static char Ans;
     protected static String unknown;
@@ -23,9 +23,27 @@ public abstract class Game {
     }
 
     public static void setunknown(String UWord) {
+        String temp = "";
         for (int i = 0; i < UWord.length(); i++) {
-            unknown = unknown.substring(0, i) + "*";
+//            unknown = unknown.substring(0, i) + "*";
+            temp += "*";
         }
+        unknown = temp;
+    }
+    
+    public static void updateUnknown(String ans, char letter){
+        if(unknown.length() != ans.length()){
+            System.out.println("Answer is not the same length as unknown");
+            System.exit(0);
+        }
+        
+        char[] unknownChars = unknown.toCharArray();
+        for (int i = 0; i < ans.length(); i++) {
+            if(ans.charAt(i)==letter){
+                unknownChars[i] = letter;
+            }
+        }
+        unknown = String.valueOf(unknownChars);
     }
 
     public static void setWord(String word) {
@@ -48,6 +66,8 @@ public abstract class Game {
         int i;
         int matches = 0;
         int len = secretword.length();
+        secretword = secretword.toLowerCase();
+        guess = Character.toLowerCase(guess);
 
         for (i = 0; i < len; i++) {
             if (guess == guessword.charAt(i)) {
@@ -58,31 +78,43 @@ public abstract class Game {
                 matches++;
             }
         }
+        updateUnknown(secretword, guess);
         return matches;
 
     }
 
     public static boolean play() {
         Random randomGenerator = new Random();
-        int n = randomGenerator.nextInt(Wordlist.length);
+        int n = 0;
+        char Letter;
+        System.out.println("Getting a random number");
+        if(Wordlist!=null)
+            n = randomGenerator.nextInt(Wordlist.length);
+        else{
+            System.out.println("Wordlist not set up, aborting");
+            System.exit(0);
+        }
+        String def = Wordlist[n][1];
+        String ans = Wordlist[n][0];
+        setunknown(ans);
         Scanner keyboard = new Scanner(System.in);
 
         System.out.println("\n\nEach letter is represented by an asterisk.");
-        System.out.println("\n\nYou have to type only one letter in one try.");
-        System.out.println("\n\nYou have " + MAX_TRIES + " tries to try.");
-        System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("\nYou have to type only one letter in one try.");
+        System.out.println("\nYou have " + MAX_TRIES + " tries to try.");
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
         // Loop until the guesses are used up
         while (num_of_wrong_guesses < MAX_TRIES) {
-            System.out.println("\n\n" + getWordD());//This displays the hint of the secret word.
+            System.out.println("\n\n" + def);//This displays the hint of the secret word.
             System.out.println("\n\n" + unknown);
             System.out.println("\n\nGuess a letter: ");
-            keyboard.nextLine();
+            Letter = keyboard.nextLine().charAt(0);
 
             //Comparing the letter to the word.
             // Fill secret word with letter if the guess is correct,
             // otherwise increment the number of wrong guesses.
-            if (CharFill(Letter, Word, unknown) == 0) {
+            if (CharFill(Letter, ans, unknown) == 0) {
                 System.out.println("Whoops! That letter is not in the word.");
                 num_of_wrong_guesses++;
             } else {
@@ -93,14 +125,14 @@ public abstract class Game {
             System.out.println("You have " + (MAX_TRIES - num_of_wrong_guesses));
             System.out.println(" guesses left.");
             // Check if user guessed the word.
-            if (Word.equals(unknown)) {
-                System.out.println(Word);
-                System.out.println("Congratulations!!! You guessed the word!!");
+            if (ans.toLowerCase().equals(unknown.toLowerCase())) {
+                System.out.println(ans);
+                System.out.println("\nCongratulations!!! You guessed the word!!");
                 return true;
             }
         }
             System.out.println("\nSorry, you lose..., You can try again...");
-            System.out.println("The word was : " + Word);
+            System.out.println("The word was : " + ans);
         return false;
     }
 }
