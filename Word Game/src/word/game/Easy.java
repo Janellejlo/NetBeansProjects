@@ -22,7 +22,7 @@ public class Easy extends Game {
 
         //open file to read
         try {
-            System.out.println("Getting File");
+            //System.out.println("Getting File");
             inputfile = new Scanner(new FileInputStream("src/word/game/EList.txt"));
         } catch (FileNotFoundException e) {
             System.out.println("File Not Found. 1");
@@ -40,7 +40,7 @@ public class Easy extends Game {
 
         //reopen file to read again from the top
         try {
-            System.out.println("Getting File");
+           // System.out.println("Getting File");
             inputfile = new Scanner(new FileInputStream("src/word/game/EList.txt"));
         } catch (FileNotFoundException e) {
             System.out.println("File Not Found. 2");
@@ -50,9 +50,9 @@ public class Easy extends Game {
         super.Wordlist = new String[lcount][2];
         for (int i = 0; i < lcount; i++) {
             super.Wordlist[i][0] = inputfile.next();
-            System.out.println("added '" + Wordlist[i][0] + "' to Wordlist[" + i + "][0]");
+            //System.out.println("added '" + Wordlist[i][0] + "' to Wordlist[" + i + "][0]");
             super.Wordlist[i][1] = inputfile.nextLine();
-            System.out.println("added '" + Wordlist[i][1] + "' to Wordlist[" + i + "][1]");
+            //System.out.println("added '" + Wordlist[i][1] + "' to Wordlist[" + i + "][1]");
         }
         inputfile.close();
 

@@ -8,7 +8,7 @@ import java.util.Scanner;
  */
 public abstract class Game {
 
-    protected static final int MAX_TRIES = 3;
+    protected static final int MAX_TRIES = 8;
     protected static String[][] Wordlist;
     protected static String Word;
     protected static String WordD; //definition
@@ -87,7 +87,7 @@ public abstract class Game {
         Random randomGenerator = new Random();
         int n = 0;
         char Letter;
-        System.out.println("Getting a random number");
+        //System.out.println("Getting a random number");
         if(Wordlist!=null)
             n = randomGenerator.nextInt(Wordlist.length);
         else{

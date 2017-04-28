@@ -21,7 +21,7 @@ public class Hard extends Game{
 
         //open file to read
         try {
-            System.out.println("Getting File");
+            //System.out.println("Getting File");
             inputfile = new Scanner(new FileInputStream("src/word/game/HList.txt"));
         } catch (FileNotFoundException e) {
             System.out.println("File Not Found.");
@@ -39,7 +39,7 @@ public class Hard extends Game{
 
         //reopen file to read again from the top
         try {
-            System.out.println("Getting File");
+           // System.out.println("Getting File");
             inputfile = new Scanner(new FileInputStream("src/word/game/HList.txt"));
         } catch (FileNotFoundException e) {
             System.out.println("File Not Found.");
@@ -49,9 +49,9 @@ public class Hard extends Game{
         super.Wordlist = new String[lcount][2];
         for (int i = 0; i < lcount; i++) {
             super.Wordlist[i][0] = inputfile.next();
-            System.out.println("added '" + Wordlist[i][0] + "' to Wordlist[" + i + "][0]");
+            //System.out.println("added '" + Wordlist[i][0] + "' to Wordlist[" + i + "][0]");
             super.Wordlist[i][1] = inputfile.nextLine();
-            System.out.println("added '" + Wordlist[i][1] + "' to Wordlist[" + i + "][1]");
+            //System.out.println("added '" + Wordlist[i][1] + "' to Wordlist[" + i + "][1]");
         }
         inputfile.close();
 
