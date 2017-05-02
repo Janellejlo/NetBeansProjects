@@ -32,7 +32,7 @@ public abstract class Game {
         String temp = "";
         for (int i = 0; i < UWord.length(); i++) {
 //            unknown = unknown.substring(0, i) + "*";
-            temp += GREEN +"*" + RESET;
+            temp += "*";
         }
         unknown = temp;
     }
